@@ -1,0 +1,47 @@
+# Buscar dataset a utilizar
+library(help = "datasets")
+
+# Voy a usar el dataset de airquality que es un data.frame
+view(airquality)
+str(airquality)
+class(airquality)
+
+#Subsetting
+
+## Slicing
+head(airquality)
+tail(airquality)
+
+## Slicing (1)
+airquality[10,] #para visualizar el reglón 10
+airquality[121,] #para visualizar el reglón 121
+
+## Slicing (2)
+airquality[,5] #para visualizar la columna 5 (mes)
+airquality[,3] #para visualizar la columna 3 (wind)
+
+## Slicing (3 y 4)
+airquality[3:15, 4] #para visualizar del renglón 3 al 15 de la columna 4 (temp)
+airquality[100:105, 1] #para visualizar del renglón 100 al 105 de la columna 1 (ozone)
+
+## Slicing (5)
+airquality[1:10, c(3,4)] #para visualizar del renglón 1 al 10 de las columnas 3 y 4 (wind, Temp)
+airquality[50:55, c(1,2,5)] #para visualizar del renglón 50 al 55 de las columnas 1, 2 y 5 (ozone, solarR, mes)
+
+## Slicing (6)
+airquality[, c(3,4)] #para visualizar todos los renglones de las columnas 3 y 4 (wind, Temp)
+airquality[, 4] #para visualizar todos los renglones de la columna 4 (Temp)
+
+## Slicing (7)
+airquality[airquality$Temp == 79,] #para visualizar los renglones en donde la temperatura sea 79
+airquality[airquality$Solar.R>200 & airquality$Temp>90,] #para visualizar los renglones en donde la radiación solar y temperatura son altas
+
+# Slicing with subset()
+subset(x = airquality,
+       subset = Temp == 90 & Solar.R > 250 | Solar.R < 300)  # Duda: en los renglones 1:3, 8:10, etc no se cumplen las condiciones
+
+# Slicing with subset()
+subset(x = airquality,
+       subset = Temp == 90 & Solar.R > 200,
+       select = c(Ozone, Month))   #para visualizar los renglones de las variables de ozono y mes donde la temperatura sea 90 y radiación solar superior a 200
+
